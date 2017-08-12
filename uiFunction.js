@@ -469,6 +469,7 @@ function onKeyDown(event) {
             }
         break;
         case 9: //tab
+        break;
         //currentItem = menuBts[initialItem];
         //console.log(currentItem);
         case 32:    //spacebar
@@ -561,7 +562,9 @@ function onKeyDown(event) {
                     expBar.sourceWidth, expBar.sourceHeight,
                     expBar.x, expBar.y, expBar.width, expBar.height);
             }
-            break;
+        break;
+
+
 
         case 84: //T, show weapon wheel
         isTHeld = true;
@@ -578,6 +581,7 @@ function onKeyDown(event) {
         case 73: // I
         case 75: // K
             movePlayer();
+            moveVehicle();
         break;
     }
 }
@@ -589,16 +593,19 @@ function onKeyUp(event) {
             isTHeld = false;
             weaponSelect();
         break;
+        
         case 69: //E, to select weapon
-            currentSelectedWP++;
-            if (currentSelectedWP >= maxWeaponNum){
-                currentSelectedWP = 0;
+            if(isTHeld){
+                currentSelectedWP++;
+                if (currentSelectedWP >= maxWeaponNum){
+                    currentSelectedWP = 0;
+                }
+                hudCtx.clearRect(wpWhell01.x, wpWhell01.y, wpWhell01.width, wpWhell01.height);
+                hudCtx.drawImage(wpWheels[currentSelectedWP].image,wpWhell01.sourceX, wpWhell01.sourceY, 
+                    wpWhell01.sourceWidth, wpWhell01.sourceHeight,
+                    wpWhell01.x, wpWhell01.y, wpWhell01.width, wpWhell01.height);
+                drawSelectedCircle(currentSelectedWP);
             }
-            hudCtx.clearRect(wpWhell01.x, wpWhell01.y, wpWhell01.width, wpWhell01.height);
-            hudCtx.drawImage(wpWheels[currentSelectedWP].image,wpWhell01.sourceX, wpWhell01.sourceY, 
-                wpWhell01.sourceWidth, wpWhell01.sourceHeight,
-                wpWhell01.x, wpWhell01.y, wpWhell01.width, wpWhell01.height);
-            drawSelectedCircle(currentSelectedWP);
         break;
 
          //move player

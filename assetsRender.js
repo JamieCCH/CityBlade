@@ -243,4 +243,14 @@ function render() {
     //player
     gameCtx.drawImage(playerImg,player.x,player.y,player.width,player.height);
     miniPlayerCtx.drawImage(miniplayerImg, miniPlayer.x, miniPlayer.y, miniPlayer.width, miniPlayer.height);
+
+    //vehicle
+    gameCtx.drawImage(carImg,vehicle.x,vehicle.y,vehicle.width,vehicle.height);
+
+    //vehicle HUD meter
+    vehicleCtx.drawImage(vehicleEmptyBar.image, vehicleEmptyBar.x, vehicleEmptyBar.y, vehicleEmptyBar.width, vehicleEmptyBar.height);
+    vehicleCtx.drawImage(vehicleFullThermo, vehicleFullBar.sourceX, vehicleFullBar.sourceY, 
+        vehicleFullBar.sourceWidth, vehicleFullBar.sourceHeight,
+        vehicleFullBar.x, vehicleFullBar.y, vehicleFullBar.width, vehicleFullBar.height);
+    
 }

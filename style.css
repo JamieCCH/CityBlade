@@ -80,11 +80,14 @@ canvas {
     display: none;
 }
 
+#HudVehicle{
+    z-index: 25;  /* 4*/ 
+    display: none;  /* none*/ 
+}
+
 #HudDefault{
-    z-index: 22;  /* 2*/ 
+    z-index: 24;  /* 4*/ 
     display: block;  /* none*/ 
-    background-image: url(img/img_sceneBG.png);
-    background-size: 100% 100%;
 }
 
 #minimap{
@@ -100,6 +103,13 @@ canvas {
 #game{
     z-index:23;  /* 3*/
     display: block;  /* none*/ 
+}
+
+#gameBG{
+    z-index: 22;  /* 2*/ 
+    display: block;  /* none*/ 
+    background-image: url(img/img_sceneBG.png);
+    background-size: 100% 100%;
 }
 
 

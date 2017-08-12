@@ -27,8 +27,6 @@ var hudCanvas = document.getElementById("HudDefault");
 var hudCtx = hudCanvas.getContext("2d");
 var swimCanvas = document.getElementById("HudSwim");
 var swimCtx = swimCanvas.getContext("2d");
-var vehicleCanvas = document.getElementById("HudVehicle");
-var vehicleCtx = vehicleCanvas.getContext("2d");
 var mapCanvas = document.getElementById("FullMap");
 var mapCtx = mapCanvas.getContext("2d");
 var stampCanvas = document.getElementById("StampBook");
@@ -39,6 +37,10 @@ var minimapCanvas = document.getElementById("minimap");
 var minimapCtx = minimapCanvas.getContext("2d");
 var gameCanvas = document.getElementById("game");
 var gameCtx = gameCanvas.getContext("2d");
+var miniPlayerCanvas = document.getElementById("miniPlayer");
+var miniPlayerCtx = miniPlayerCanvas.getContext("2d");
+var vehicleHudCanvas = document.getElementById("HudVehicle");
+var vehicleCtx = vehicleHudCanvas.getContext("2d");
 
 var assetsToLoad = [];
 var assetsLoaded = 0;
@@ -580,6 +582,31 @@ assetsToLoad.push(emptyMeter.image);
 var meterBar = new Image();
 meterBar.addEventListener("load", loadHandler, false);
 meterBar.src = "img/hud_fullBar.png";
+assetsToLoad.push(meterBar);
+
+var vehicleFullThermo = new Image();
+vehicleFullThermo.addEventListener("load", loadHandler, false);
+vehicleFullThermo.src = "img/hud_vehicleFull.png";
+assetsToLoad.push(vehicleFullThermo);
+
+var vehicleFullBar = Object.create(hudObj);
+vehicleFullBar.sourceX = 102;
+vehicleFullBar.sourceY = 80;
+vehicleFullBar.sourceWidth = 10;  //max=160
+vehicleFullBar.sourceHeight = 30;
+vehicleFullBar.x = 152;
+vehicleFullBar.y = 130;
+vehicleFullBar.width = 10;     //max=160
+vehicleFullBar.height = 30;
+vehicleFullBar.image = vehicleFullThermo;
+
+var vehicleEmptyBar = Object.create(hudObj);
+vehicleEmptyBar.sourceWidth = 320;
+vehicleEmptyBar.width = 320;
+vehicleEmptyBar.image = new Image();
+vehicleEmptyBar.image.addEventListener("load", loadHandler, false);
+vehicleEmptyBar.image.src = "img/hud_vehicleEmpty.png";
+assetsToLoad.push(vehicleEmptyBar.image);
 
 var meters = [];
 
@@ -725,7 +752,6 @@ var wpSmall4 = Object.create(wpSelected);
 wpSmall4.x = 258;
 wpSmall4.y = 704;
 wpSelections.push(wpSmall4);
-
 
 //minimap---------
 var minimapImg = new Image();

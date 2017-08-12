@@ -6,4 +6,8 @@
 
 When holding ’T’, press ‘E’ to select.
 
-Use ‘I/K/J/L’ to move player to check its position on minimap.
+Use ‘I/K/J/L’ to move the character to check its position on minimap.
+
+Vehicle HUD : Move the character to touch the vehicle to activate 
+
+Swim HUD: 
