@@ -9,6 +9,7 @@ function render() {
             menuBtn.x, menuBtn.y,
             menuBtn.width, menuBtn.height); 
             //console.log(menuBtImg);
+            //definePath(menuBtn.points);
         }
      }
     //draw characters
@@ -39,7 +40,6 @@ function render() {
     creditCtx.drawImage(roles[1].img,950,100,roles[1].width*1.1,roles[1].height*1.1);
     creditCtx.drawImage(profiles[1].image,1230,300,profiles[1].width*0.9,profiles[1].height*0.9);
     
-
     //pause menu
     pauseCtx.drawImage(board,250,50,1300,675);
     pauseCtx.drawImage(closeBtn, closeButton.x, closeButton.y, closeButton.width, closeButton.height);
@@ -56,7 +56,7 @@ function render() {
             var pauseBtn = pauseTabs[i];
             pauseCtx.drawImage(pauseTabImg, pauseBtn.sourceX, pauseBtn.sourceY, 
                 pauseBtn.sourceWidth, pauseBtn.sourceHeight,
-                pauseBtn.x, pauseBtn.y, pauseBtn.width, pauseBtn.height)
+                pauseBtn.x, pauseBtn.y, pauseBtn.width, pauseBtn.height);
         }
     }
     pauseCtx.drawImage(pauseTabImg,settingHover.sourceX,settingHover.sourceY,
@@ -207,7 +207,7 @@ function render() {
         }
     }
 
-    // game HUD default
+    //game HUD default
     hudCtx.drawImage(emptyMeter.image,emptyMeter.x,emptyMeter.y,emptyMeter.width,emptyMeter.height);
     for(var i = 0 ; i < meters.length ; i++){
         var hud = meters[i];
@@ -215,12 +215,14 @@ function render() {
             hud.sourceWidth, hud.sourceHeight,
             hud.x, hud.y, hud.width, hud.height)
     }
+
+    //pause button
+    hudCtx.drawImage(pauseBtImg,pauseBt.x,pauseBt.y,pauseBt.width,pauseBt.height);
+
     //weapon
     hudCtx.drawImage(wpBig01.image,wpBig01.sourceX, wpBig01.sourceY, wpBig01.sourceWidth, wpBig01.sourceHeight,
         wpBig01.x,wpBig01.y,wpBig01.width,wpBig01.height);
 
-
-    
     //fullMap screen
     //mapCtx.drawImage(fullMap,0,0,stageW,stageH);
 
@@ -252,12 +254,14 @@ function render() {
     vehicleCtx.drawImage(vehicleFullThermo, vehicleFullBar.sourceX, vehicleFullBar.sourceY, 
         vehicleFullBar.sourceWidth, vehicleFullBar.sourceHeight,
         vehicleFullBar.x, vehicleFullBar.y, vehicleFullBar.width, vehicleFullBar.height);
-    
+    vehicleCtx.drawImage(pauseBtImg,pauseBt.x,pauseBt.y,pauseBt.width,pauseBt.height);
+
     //swim HUD meter
     swimCtx.drawImage(swimHudEmpty.image, swimHudEmpty.x, swimHudEmpty.y, swimHudEmpty.width, swimHudEmpty.height);
     swimCtx.drawImage(swimHudFull.image, swimHudFull.sourceX, swimHudFull.sourceY, 
         swimHudFull.sourceWidth, swimHudFull.sourceHeight,
         swimHudFull.x, swimHudFull.y, swimHudFull.width, swimHudFull.height);
+    
     //goggle
     gameCtx.drawImage(goggle,600,150,swimObj.width,swimObj.height);
     playerSwimCtx.drawImage(swimObj.image,swimObj.x,swimObj.y,swimObj.width,swimObj.height );

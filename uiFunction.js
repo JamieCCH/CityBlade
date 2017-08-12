@@ -16,6 +16,7 @@ var attachedOn = false;
 var isDie = false;
 var mainMenu = false;
 var isInGame = false;
+var isSetting = false;
 var keyPressed =[]; //for weapon selecting
 var isTHeld = false;
 var maxWeaponNum = weaponOns.length;
@@ -32,12 +33,6 @@ function initGame() {
     mainMenu = true;
 }
 
-function checkPos(mouseEvent){
-    mouseX = Math.floor((mouseEvent.clientX)*(stageW/stage.offsetWidth));
-    mouseY = Math.floor((mouseEvent.clientY)*(stageW/stage.offsetWidth));
-    //console.log(mouseX,mouseY);
-} 
-
 function checkClick(mouseEvent){
     //start menu button detect-----
     for(i = 0; i < menuBts.length; i++){
@@ -47,16 +42,24 @@ function checkClick(mouseEvent){
                 if(mainMenu === true && startCanvas.style.display === "block"){ 
                     switch(i){
                         case 0:
-                            newGame(); 
+                            newGame();
+                            stageCtx.clearRect(0,0,stageW,stageH); 
+                            mainMenu = false;
                         break;
                         case 1:
                             game();
+                            mainMenu = false;
+                            isInGame = true;
                         break;
                         case 2:
                             setting();
+                            mainMenu = false;
+                            isSetting = true;
                         break;
                         case 3:
                             credit();
+                            stageCtx.clearRect(0,0,stageW,stageH); 
+                            mainMenu = false;
                         break;
                     }
                 }
@@ -96,23 +99,7 @@ function checkClick(mouseEvent){
     //back btn invoked
     if(mouseX > back.x && mouseX < back.x + back.width){
         if(mouseY > back.y && mouseY < back.y+ back.height){
-            //in the initial setting screen
-            if(roleCanvas.style.display === "block" || SettingCanvas.style.display === "block" 
-                ||creditCanvas.style.display === "block"){    
-                startCanvas.style.display = "block";
-                roleCanvas.style.display = "none";
-                SettingCanvas.style.display = "none";
-                SetGraphCanvas.style.display = "none";
-                SetAudioCanvas.style.display = "none";
-                SetGameplayCanvas.style.display = "none";
-                SetAcesCanvas.style.display = "none";
-                keyMapCanvas.style.display = "none";
-                creditCanvas.style.display = "none";
-            stageCtx.clearRect(0,0,stageW,stageH);
-            }
-            // in inventory screen
-            if(stampCanvas.style.display === "block")
-                stampCanvas.style.display = "none";
+            location.reload();
         }
     }    
     //input name space
@@ -121,7 +108,7 @@ function checkClick(mouseEvent){
             //
         }
     }
-    //setting screen left tab
+    //setting screen left side tab
     if(SettingCanvas.style.display === "block" || pauseCanvas.style.display === "block"){
     for(i = 0; i < setTabs.length; i++){
         var setBtn = setTabs[i];
@@ -150,7 +137,7 @@ function checkClick(mouseEvent){
     }
     }
     //game over screen buttons
-    if(isDie===true){
+    if(isDie){
         for(var i = 0; i < dieBtns.length; i++){
             var tempHold = dieBtns[i];
             if(mouseX > tempHold.x && mouseX < tempHold.x + tempHold.width){
@@ -161,8 +148,9 @@ function checkClick(mouseEvent){
                         dieCanvas.style.display = "none";
                     break;
                     case 1:
-                        newGame();
-                        dieCanvas.style.display = "none";
+                        location.reload();
+                        //newGame();
+                        //dieCanvas.style.display = "none";
                     break;
                 }
             }
@@ -185,7 +173,19 @@ function checkClick(mouseEvent){
                 }
             }
         }
-    }   
+    }  
+//in game pasuse button 
+    if(mouseX > pauseBt.x && mouseX < pauseBt.x + pauseBt.width){
+        if(mouseY > pauseBt.y && mouseY < pauseBt.y+ pauseBt.height){
+            if(hudCanvas.style.display === "block" && dieCanvas.style.display !== "block"
+                && isPause === false && mapCanvas.style.display !== "block"){
+                pause();
+                    isPause = true;
+            }else{
+                    isPause = false;
+                }
+        }
+    } 
 }
 
 if(mainMenu === true){
@@ -219,7 +219,11 @@ function game(){
     isInGame = true;
     isDie = false;
     showMap = true;
+    gameCanvas.style.display = "block";
+    miniPlayerCanvas.style.display = "block";
     hudCanvas.style.display = "block";
+    minimapCanvas.style.display = "block";
+    gameBG.style.display = "block";
     startCanvas.style.display = "none";
     pauseCanvas.style.display = "none";
     missionCanvas.style.display = "none";
@@ -237,6 +241,11 @@ function game(){
 function gameOver(){
     dieCanvas.style.display = "block";
     isDie = true;
+    hpBar.width = 130;
+    hpBar.sourceWidth = 130;
+    hudCtx.drawImage(meterBar,hpBar.sourceX, hpBar.sourceY, 
+        hpBar.sourceWidth, hpBar.sourceHeight,
+        hpBar.x, hpBar.y, hpBar.width, hpBar.height);
 }
 
 function pause(){
@@ -266,7 +275,9 @@ function mission(){
 
 function setting(){
     SettingCanvas.style.display = "block";
+    stageCtx.clearRect(0,0,stageW,stageH);
     setGraph();
+    
 }
 
 function setGraph(){
@@ -276,8 +287,6 @@ function setGraph(){
     SetAcesCanvas.style.display = "none";
     keyMapCanvas.style.display = "none";
     SetAudioCanvas.style.display = "none";
-    stageCtx.clearRect(0,0,stageW,stageH);
-
     //default selected on graphics setting screen
     stageCtx.drawImage(radioBt[0][0].image, radioBt[0][0].sourceX, radioClick.y,
         radioBt[0][0].sourceWidth, radioBt[0][0].sourceHeight,
@@ -452,10 +461,19 @@ function onKeyDown(event) {
         case 82: //r
             if(isInGame === true && hudCanvas.style.display === "block" && 
                 mapCanvas.style.display !== "block" && isPause !== true){
+                    location.reload();
+            /*   
                 hudCanvas.style.display = "none";
                 startCanvas.style.display = "block";
                 isInGame = false;
+                gameCanvas.style.display = "none";
+                miniPlayerCanvas.style.display = "none";
+                hudCanvas.style.display = "none";
+                minimapCanvas.style.display = "none";
+                gameBG.style.display = "none";
+            */
             }
+            
         break;
         case 79: //o
             if(hudCanvas.style.display === "block" && mapCanvas.style.display !== "block" &&
@@ -507,8 +525,14 @@ function onKeyDown(event) {
                 hudCtx.drawImage(meterBar,hpBar.sourceX, hpBar.sourceY, 
                     hpBar.sourceWidth, hpBar.sourceHeight,
                     hpBar.x, hpBar.y, hpBar.width, hpBar.height);
-            }if(hpBar.width <=12)
-                gameOver();
+            }
+            if(hpBar.width <=12)
+            {
+                if(hudCanvas.style.display === "block" && mapCanvas.style.display !== "block" &&
+                    isInGame === true && isPause === false && showMap === true){
+                    gameOver();
+                }
+            }
             break;
         case 37:    // Left, decrease EP
             if(hpBar.width > 12 )
@@ -563,8 +587,6 @@ function onKeyDown(event) {
                     expBar.x, expBar.y, expBar.width, expBar.height);
             }
         break;
-
-
 
         case 84: //T, show weapon wheel
         isTHeld = true;

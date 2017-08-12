@@ -1,3 +1,5 @@
+Please click ‘CONTINUE’ to enter game screen.
+
 'up/down arrow keys' to increase/decrease HP
 
 ‘left/right arrow keys' to increase/decrease  EP

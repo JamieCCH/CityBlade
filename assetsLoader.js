@@ -47,6 +47,16 @@ var playerSwimCtx = playerSwimCanvas.getContext("2d");
 var assetsToLoad = [];
 var assetsLoaded = 0;
 
+function loadHandler()
+{ 
+    assetsLoaded++;
+    //console.log(assetsLoaded);
+    if(assetsLoaded === assetsToLoad.length)
+    {
+        render();
+    }
+}
+
 //start screen--------
 var menuBt =
 {
@@ -58,34 +68,91 @@ var menuBt =
   y: 300,
   width: 378,
   height: 87,
-  
+  x2:578,
+  y2:0,
+  points:[],
 };
 var menuBts = [];
 
 var newGame = Object.create(menuBt);
 newGame.x = 200;
 newGame.y = 330;
+newGame.x2 = 578;
+newGame.y2 = 417;
+newGame.points = [
+    {x:newGame.x,y:newGame.y},
+    {x:newGame.x2,y:newGame.y},
+    {x:newGame.x2,y:newGame.y2},
+    {x:newGame.x,y:newGame.y2}
+];
 menuBts.push(newGame);
 
 var contGame = Object.create(menuBt);
 contGame.sourceY = 109;
 contGame.y = 430;
+contGame.y2 = 517;
+contGame.points = [
+    {x:contGame.x,y:contGame.y},
+    {x:contGame.x2,y:contGame.y},
+    {x:contGame.x2,y:contGame.y2},
+    {x:contGame.x,y:contGame.y2}
+];
 menuBts.push(contGame);
 
 var setting = Object.create(menuBt);
 setting.sourceY = 218;
 setting.y = 530;
+setting.y2 = 617;
+setting.points = [
+    {x:setting.x,y:setting.y},
+    {x:setting.x2,y:setting.y},
+    {x:setting.x2,y:setting.y2},
+    {x:setting.x,y:setting.y2}
+];
 menuBts.push(setting);
 
 var credits = Object.create(menuBt);
 credits.sourceY = 327;
 credits.y = 630;
+credits.y2 = 717;
+credits.points = [
+    {x:credits.x,y:credits.y},
+    {x:credits.x2,y:credits.y},
+    {x:credits.x2,y:credits.y2},
+    {x:credits.x,y:credits.y2}
+];
 menuBts.push(credits);
 
 var menuBtImg = new Image();
 menuBtImg.addEventListener("load", loadHandler, false);
 menuBtImg.src = "img/bt_startBts.png";
 assetsToLoad.push(menuBtImg);
+
+var menuBtHovers = [];
+
+var newGameHover = Object.create(menuBt);
+newGameHover.sourceY = 441;
+newGameHover.x = newGame.x;
+newGameHover.y = newGame.y;
+menuBtHovers.push(newGameHover);
+
+var contGameHover = Object.create(menuBt);
+contGameHover.sourceY = 549;
+contGameHover.x = contGame.x;
+contGameHover.y = contGame.y;
+menuBtHovers.push(contGameHover);
+
+var settingHover = Object.create(menuBt);
+settingHover.sourceY = 658;
+settingHover.x = setting.x;
+settingHover.y = setting.y;
+menuBtHovers.push(settingHover);
+
+var creditsHover = Object.create(menuBt);
+creditsHover.sourceY = 766;
+creditsHover.x = credits.x;
+creditsHover.y = credits.y;
+menuBtHovers.push(creditsHover);
 
 
 //character Creation Screen----------
@@ -220,6 +287,7 @@ back.x = 1380;
 back.y = 620;
 back.width = 166;
 back.height = 93;
+back.points = [{x:1380,y:620},{x:1546,y:620},{x:1546,y:713},{x:1380,y:713}];
 back.img = new Image();
 back.img.addEventListener("load", loadHandler, false);
 back.img.src = "img/bt_back.png";
@@ -255,6 +323,7 @@ var closeButton = {
     y:55,
     width:78,
     height:78,
+    points:[{x:1455,y:55},{x:1533,y:55},{x:1533,y:133},{x:1455,y:133}]
 }
 var closeBtn = new Image();
 closeBtn.addEventListener("load", loadHandler, false);
@@ -271,39 +340,114 @@ var setTab = {
     y: 95,
     width: 235,
     height: 110,
+    x2:277,
+    y2:205,
+    points:[],
 }
 var setTabs =[];
 
 var graphics = Object.create(setTab);
 graphics.sourceHeight = 117;
 graphics.height = 117;
+graphics.points = [
+    {x:graphics.x,y:graphics.y},
+    {x:graphics.x2,y:graphics.y},
+    {x:graphics.x2,y:graphics.y2},
+    {x:graphics.x,y:graphics.y2}
+];
 setTabs.push(graphics);
 
 var audio = Object.create(setTab);
 audio.sourceY = 115;
 audio.y = 205;
+audio.y2 = 315;
+audio.points = [
+    {x:audio.x,y:audio.y},
+    {x:audio.x2,y:audio.y},
+    {x:audio.x2,y:audio.y2},
+    {x:audio.x,y:audio.y2}
+];
 setTabs.push(audio);
 
 var keyMap = Object.create(setTab);
 keyMap.sourceY = 225;
 keyMap.y = 315;
+keyMap.y2 = 425;
+keyMap.points = [
+    {x:keyMap.x,y:keyMap.y},
+    {x:keyMap.x2,y:keyMap.y},
+    {x:keyMap.x2,y:keyMap.y2},
+    {x:keyMap.x,y:keyMap.y2}
+];
 setTabs.push(keyMap);
 
 var gameplay = Object.create(setTab);
 gameplay.sourceY = 335;
 gameplay.y = 425;
+gameplay.y2 = 535;
+gameplay.points = [
+    {x:gameplay.x,y:gameplay.y},
+    {x:gameplay.x2,y:gameplay.y},
+    {x:gameplay.x2,y:gameplay.y2},
+    {x:gameplay.x,y:gameplay.y2}
+];
 setTabs.push(gameplay);
 
 var Accessibility = Object.create(setTab);
 Accessibility.sourceY = 445;
 Accessibility.y = 530;
+Accessibility.y2 = 640;
 Accessibility.sourceHeight = 115;
+Accessibility.points = [
+    {x:Accessibility.x,y:Accessibility.y},
+    {x:Accessibility.x2,y:Accessibility.y},
+    {x:Accessibility.x2,y:Accessibility.y2},
+    {x:Accessibility.x,y:Accessibility.y2}
+];
 setTabs.push(Accessibility);
 
 var setTabImg = new Image();
 setTabImg.addEventListener("load", loadHandler, false);
 setTabImg.src = "img/bt_settingTab.png";
 assetsToLoad.push(setTabImg);
+
+//setting menu tab selected (white text)
+var setHover = {
+    sourceX: 283,
+    sourceY: 0,
+    sourceWidth: 260,
+    sourceHeight: 110,
+    x: 42,
+    y: 95,
+    width: 260,
+    height: 110,
+}
+var setHovers =[];
+var graphHover = Object.create(setHover);
+graphHover.sourceHeight = 117;
+graphHover.height = 117;
+setHovers.push(graphHover);
+
+var audioHover = Object.create(setHover);
+audioHover.sourceY = 115;
+audioHover.y = 205;
+setHovers.push(audioHover);
+
+var keyMapHover = Object.create(setHover);
+keyMapHover.sourceY = 225;
+keyMapHover.y = 315;
+setHovers.push(keyMapHover);
+
+var gameplayHover = Object.create(setHover);
+gameplayHover.sourceY = 335;
+gameplayHover.y = 425;
+setHovers.push(gameplayHover);
+
+var AccessHover = Object.create(setHover);
+AccessHover.sourceY = 445;
+AccessHover.y = 530;
+AccessHover.sourceHeight = 115;
+setHovers.push(AccessHover);
 
 //pause screen tabs---
 var pauseTab = {
@@ -315,20 +459,42 @@ var pauseTab = {
     y: 30,
     width: 360,
     height: 85,
-    
+    points:[],
+    x2:700,
+    y2:115,
 }
 var pauseTabs =[];
 var setting = Object.create(pauseTab);
+setting.points = [
+    {x:setting.x,y:setting.y},
+    {x:setting.x2,y:setting.y},
+    {x:setting.x2,y:setting.y2},
+    {x:setting.x,y:setting.y2}
+];
 pauseTabs.push(setting);
 
 var inventory = Object.create(pauseTab);
 inventory.sourceX = 360;
 inventory.x = 720;
+inventory.x2 = 1080;
+inventory.points = [
+    {x:inventory.x,y:inventory.y},
+    {x:inventory.x2,y:inventory.y},
+    {x:inventory.x2,y:inventory.y2},
+    {x:inventory.x,y:inventory.y2}
+];
 pauseTabs.push(inventory);
 
 var missions = Object.create(pauseTab);
 missions.sourceX = 716;
 missions.x = 1095;
+missions.x2 = 1455;
+missions.points = [
+    {x:missions.x,y:missions.y},
+    {x:missions.x2,y:missions.y},
+    {x:missions.x2,y:missions.y2},
+    {x:missions.x,y:missions.y2}
+];
 pauseTabs.push(missions);
 
 var pauseTabImg = new Image();
@@ -374,45 +540,6 @@ misImg.addEventListener("load", loadHandler, false);
 misImg.src = "img/img_missionScreen.png";
 assetsToLoad.push(misImg);
 
-//setting menu tab selected (white text)
-var setHover = {
-    sourceX: 283,
-    sourceY: 0,
-    sourceWidth: 260,
-    sourceHeight: 110,
-    x: 42,
-    y: 95,
-    width: 260,
-    height: 110,
-}
-var setHovers =[];
-
-var graphHover = Object.create(setHover);
-graphHover.sourceHeight = 117;
-graphHover.height = 117;
-setHovers.push(graphHover);
-
-var audioHover = Object.create(setHover);
-audioHover.sourceY = 115;
-audioHover.y = 205;
-setHovers.push(audioHover);
-
-var keyMapHover = Object.create(setHover);
-keyMapHover.sourceY = 225;
-keyMapHover.y = 315;
-setHovers.push(keyMapHover);
-
-var gameplayHover = Object.create(setHover);
-gameplayHover.sourceY = 335;
-gameplayHover.y = 425;
-setHovers.push(gameplayHover);
-
-var AccessHover = Object.create(setHover);
-AccessHover.sourceY = 445;
-AccessHover.y = 530;
-AccessHover.sourceHeight = 115;
-setHovers.push(AccessHover);
-
 //graphics settings screen----------
 var graphItems = ["Screen Mode", "Resolution", "Anti-Aliasing", "Brightness", "Contrast"];
 var graphItemsY = [150, 250, 350, 450, 570];
@@ -451,7 +578,6 @@ var radioClick = {
     width:39,
     height:39
 }
-
 
 var slider = new Image();
 slider.addEventListener("load", loadHandler, false);
@@ -534,15 +660,31 @@ var dieBtn = {
     y: 180,
     width: 512,
     height: 94,
+    points:[],
+    x2:1432,
+    y2:274,
 }
 var dieBtns = [];
 
 var fromSave = Object.create(dieBtn);
+fromSave.points = [
+    {x:fromSave.x,y:fromSave.y},
+    {x:fromSave.x2,y:fromSave.y},
+    {x:fromSave.x2,y:fromSave.y2},
+    {x:fromSave.x,y:fromSave.y2}
+];
 dieBtns.push(fromSave);
 
 var reStart = Object.create(dieBtn);
 reStart.sourceY = 108;
 reStart.y = 300;
+reStart.y2 = 394;
+reStart.points = [
+    {x:reStart.x,y:reStart.y},
+    {x:reStart.x2,y:reStart.y},
+    {x:reStart.x2,y:reStart.y2},
+    {x:reStart.x,y:reStart.y2}
+];
 dieBtns.push(reStart);
 
 var gameEndBtn = new Image();
@@ -550,16 +692,42 @@ gameEndBtn.addEventListener("load", loadHandler, false);
 gameEndBtn.src = "img/bt_gameover.png";
 assetsToLoad.push(gameEndBtn); 
 
-
-function loadHandler()
-{ 
-    assetsLoaded++;
-    //console.log(assetsLoaded);
-    if(assetsLoaded === assetsToLoad.length)
-    {
-        render();
-    }
+var dieBtnHover = {
+    sourceX: 527,
+    sourceY: 0,
+    sourceWidth: 512,
+    sourceHeight: 94,
+    x: 940,
+    y: 180,
+    width: 512,
+    height: 94,
 }
+
+var dieBtnHovers = [];
+var fromSaveHover = Object.create(dieBtnHover);
+dieBtnHovers.push(fromSaveHover);
+
+var reStartHover = Object.create(dieBtnHover);
+reStartHover.sourceY = 108;
+reStartHover.y = 300;
+reStartHover.y2 = 394;
+dieBtnHovers.push(reStartHover);
+
+
+//pause button
+var pauseBt ={
+    x:50,
+    y:140,
+    width:45,
+    height:45,
+    image:pauseBtImg,
+    points:[{x:50,y:140},{x:95,y:140},{x:95,y:195},{x:50,y:195}],
+}
+var pauseBtImg = new Image();
+pauseBtImg.addEventListener("load", loadHandler, false);
+pauseBtImg.src = "img/bt_pause.png";
+assetsToLoad.push(pauseBtImg);
+
 
 //HUD ------------
 //Player status

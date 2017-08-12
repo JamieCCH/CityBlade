@@ -1,10 +1,9 @@
 /*
 to do:
 @ hp < 0 -> gameOver();
-@ add pause button
+v @ add pause button
 @ buttons hover effect
 */ 
-
 
 var isInCar = false;
 var vehicleID;
@@ -220,6 +219,7 @@ function resetVehicleHUD(){
         vehicleFullBar.x, vehicleFullBar.y, vehicleFullBar.width, vehicleFullBar.height);
     vehicleCtx.drawImage(vehicleEmptyBar.image, vehicleEmptyBar.x, vehicleEmptyBar.y, 
         vehicleEmptyBar.width, vehicleEmptyBar.height);
+    vehicleCtx.drawImage(pauseBtImg,pauseBt.x,pauseBt.y,pauseBt.width,pauseBt.height);    
     showVehicleHUD();
 }
 
