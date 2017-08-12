@@ -2,11 +2,11 @@ Please click ‘CONTINUE’ to enter game screen.
 
 'up/down arrow keys' to increase/decrease HP
 
-‘left/right arrow keys' to increase/decrease  EP
+‘left/right arrow keys' to decrease/increase  EP
 
-‘,/.’ to increase/decrease Ext
+‘,/.’ to decrease/increase Ext
 
-When holding ’T’, press ‘E’ to select.
+When holding ’T’, press ‘E’ to select weapons.
 
 Use ‘I/K/J/L’ to move the character to check its position on minimap.
 
