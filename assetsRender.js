@@ -253,4 +253,12 @@ function render() {
         vehicleFullBar.sourceWidth, vehicleFullBar.sourceHeight,
         vehicleFullBar.x, vehicleFullBar.y, vehicleFullBar.width, vehicleFullBar.height);
     
-}
+    //swim HUD meter
+    swimCtx.drawImage(swimHudEmpty.image, swimHudEmpty.x, swimHudEmpty.y, swimHudEmpty.width, swimHudEmpty.height);
+    swimCtx.drawImage(swimHudFull.image, swimHudFull.sourceX, swimHudFull.sourceY, 
+        swimHudFull.sourceWidth, swimHudFull.sourceHeight,
+        swimHudFull.x, swimHudFull.y, swimHudFull.width, swimHudFull.height);
+    //goggle
+    gameCtx.drawImage(goggle,600,150,swimObj.width,swimObj.height);
+    playerSwimCtx.drawImage(swimObj.image,swimObj.x,swimObj.y,swimObj.width,swimObj.height );
+}   

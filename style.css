@@ -81,8 +81,20 @@ canvas {
 }
 
 #HudVehicle{
-    z-index: 25;  /* 4*/ 
+    z-index: 25;  /* 5*/ 
     display: none;  /* none*/ 
+}
+
+#swim{
+    z-index: 26;  /* 6*/ 
+    display: none;  /* none*/ 
+}
+
+#HudSwim{
+    z-index: 25;  /* 5*/ 
+    display: none;  /* none*/ 
+    background-image: url(img/img_swimBG.png);
+    background-size: 100% 100%;
 }
 
 #HudDefault{

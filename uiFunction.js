@@ -582,6 +582,7 @@ function onKeyDown(event) {
         case 75: // K
             movePlayer();
             moveVehicle();
+            swim();
         break;
     }
 }

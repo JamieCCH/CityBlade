@@ -23,10 +23,6 @@ var SetAcesCanvas = document.getElementById("SetAces");
 var SetAcesCtx = SetAcesCanvas.getContext("2d");
 var keyMapCanvas = document.getElementById("KeyMap");
 var keyMapCtx = keyMapCanvas.getContext("2d");
-var hudCanvas = document.getElementById("HudDefault");
-var hudCtx = hudCanvas.getContext("2d");
-var swimCanvas = document.getElementById("HudSwim");
-var swimCtx = swimCanvas.getContext("2d");
 var mapCanvas = document.getElementById("FullMap");
 var mapCtx = mapCanvas.getContext("2d");
 var stampCanvas = document.getElementById("StampBook");
@@ -41,6 +37,12 @@ var miniPlayerCanvas = document.getElementById("miniPlayer");
 var miniPlayerCtx = miniPlayerCanvas.getContext("2d");
 var vehicleHudCanvas = document.getElementById("HudVehicle");
 var vehicleCtx = vehicleHudCanvas.getContext("2d");
+var hudCanvas = document.getElementById("HudDefault");
+var hudCtx = hudCanvas.getContext("2d");
+var swimCanvas = document.getElementById("HudSwim");
+var swimCtx = swimCanvas.getContext("2d");
+var playerSwimCanvas = document.getElementById("swim");
+var playerSwimCtx = playerSwimCanvas.getContext("2d");
 
 var assetsToLoad = [];
 var assetsLoaded = 0;
@@ -645,6 +647,39 @@ expBar.width = 120;    //max=162
 expBar.height = 25;
 expBar.image = meterBar;
 meters.push(expBar);
+
+//swim HUD----------
+var swimHudObj ={
+    sourceX: 0,
+    sourceY: 0,
+    sourceWidth: 671,
+    sourceHeight: 183,
+    x: 0,
+    y: 585,
+    width: 671,
+    height: 183,
+    image : null,
+}
+
+var swimHudFull = Object.create(swimHudObj);
+swimHudFull.sourceX = 152;
+swimHudFull.sourceY = 123;
+swimHudFull.sourceWidth = 518; //max=518, min = 20 = 0
+swimHudFull.sourceHeight = 59;
+swimHudFull.x = 152;
+swimHudFull.y = 708;
+swimHudFull.width = 518;     //max=518, min = 20 = 0
+swimHudFull.height = 59;
+swimHudFull.image = new Image();
+swimHudFull.image.addEventListener("load", loadHandler, false);
+swimHudFull.image.src = "img/hud_oxygenFull.png";
+assetsToLoad.push(swimHudFull.image);
+
+var swimHudEmpty = Object.create(swimHudObj);
+swimHudEmpty.image = new Image();
+swimHudEmpty.image.addEventListener("load", loadHandler, false);
+swimHudEmpty.image.src = "img/hud_oxygenEmpty.png";
+assetsToLoad.push(swimHudEmpty.image);
 
 //weapon
 var wpBig = {
