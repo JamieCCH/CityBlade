@@ -27,7 +27,7 @@ canvas {
 
 
 #whiteBoard{
-    z-index: 3;
+    z-index: 101;
     -webkit-animation-name: isHide; /* Safari 4.0 - 8.0 */
     -webkit-animation-duration: 10s; /* Safari 4.0 - 8.0 */
     animation-name: isHide;
@@ -45,7 +45,7 @@ canvas {
     100%{opacity: 0;background-color: white;}
 }
 #Splash{
-    z-index: 3;
+    z-index: 101;
     -webkit-animation-name: splash; /* Safari 4.0 - 8.0 */
     -webkit-animation-duration: 6s; /* Safari 4.0 - 8.0 */
     animation-name: splash;
