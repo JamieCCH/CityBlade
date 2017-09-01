@@ -16,29 +16,32 @@ function checkPos(mouseEvent){
     var isHover;
 
     //close button
-    definePath(pauseCtx,closeButton.points);
-    definePath(invenCtx,closeButton.points);
-    definePath(missionCtx,closeButton.points);
-    if(pauseCtx.isPointInPath(mouseX,mouseY)||
-        invenCtx.isPointInPath(mouseX,mouseY)||
-        missionCtx.isPointInPath(mouseX,mouseY)){
-            setCursor = "pointer";
-            isHover = true;
-    }else
-            isHover = false;
+    if(isPause){
+        definePath(pauseCtx,closeButton.points);
+        definePath(invenCtx,closeButton.points);
+        definePath(missionCtx,closeButton.points);
+        if(pauseCtx.isPointInPath(mouseX,mouseY)||
+            invenCtx.isPointInPath(mouseX,mouseY)||
+            missionCtx.isPointInPath(mouseX,mouseY)){
+                setCursor = "pointer";
+                isHover = true;
+        }else
+                isHover = false;
+    }
 
     //back button
-    definePath(creditCtx,back.points);
-    definePath(SettingCtx,back.points);
-    definePath(stampCtx,back.points);
-    if(creditCtx.isPointInPath(mouseX,mouseY)||
-        SettingCtx.isPointInPath(mouseX,mouseY)||
-        stampCtx.isPointInPath(mouseX,mouseY)){
-            setCursor = "pointer";
-            isHover = true;
-    }else
-            isHover = false;
-
+    if(isBack){
+        definePath(creditCtx,back.points);
+        definePath(SettingCtx,back.points);
+        definePath(stampCtx,back.points);
+        if(creditCtx.isPointInPath(mouseX,mouseY)||
+            SettingCtx.isPointInPath(mouseX,mouseY)||
+            stampCtx.isPointInPath(mouseX,mouseY)){
+                setCursor = "pointer";
+                isHover = true;
+        }else
+                isHover = false;
+    }
 
     //setting screen left tabs
     if(isSetting||isPause){
