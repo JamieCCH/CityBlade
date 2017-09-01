@@ -493,7 +493,7 @@ function onKeyDown(event) {
             if (confirm === false) {
                 confirm = true;
                 //fadeId = setInterval("fadeOut()", 60);
-                wipeId = setInterval("wipeOut()", 5);
+                //wipeId = setInterval("wipeOut()", 5);
             }
             break;
         //case 73: //I
