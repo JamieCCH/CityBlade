@@ -25,7 +25,6 @@ canvas {
     z-index: 3;
 }
 
-
 #whiteBoard{
     z-index: 101;
     -webkit-animation-name: isHide; /* Safari 4.0 - 8.0 */

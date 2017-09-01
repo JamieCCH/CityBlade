@@ -1,4 +1,5 @@
 var whiteBoard = document.getElementById("whiteBoard");
+var splash = document.getElementById("Splash");
 var startCanvas = document.getElementById("Start");
 var startCtx = startCanvas.getContext("2d");
 var roleCanvas = document.getElementById("Character");
@@ -54,6 +55,10 @@ function loadHandler()
     if(assetsLoaded === assetsToLoad.length)
     {
         render();
+        setTimeout(function(){ 
+            whiteBoard.style.display = "none"; 
+            splash.style.display = "none";
+        }, 7500);
     }
 }
 

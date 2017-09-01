@@ -22,7 +22,6 @@ var isTHeld = false;
 var maxWeaponNum = weaponOns.length;
 var currentSelectedWP = 0;
 
-
 initGame();
 
 function initGame() {
